@@ -1,0 +1,55 @@
+{
+  "name": "@leadpipe/mcp",
+  "version": "0.2.0",
+  "description": "Official MCP server for Leadpipe intent and data APIs.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leadpipe-com/mcp.git"
+  },
+  "homepage": "https://leadpipe.com",
+  "bugs": {
+    "url": "https://github.com/leadpipe-com/mcp/issues"
+  },
+  "keywords": [
+    "leadpipe",
+    "mcp",
+    "model-context-protocol",
+    "intent",
+    "resolution",
+    "identification",
+    "visitor-data",
+    "pixel",
+    "audience",
+    "agents"
+  ],
+  "type": "module",
+  "bin": {
+    "leadpipe-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@leadpipe/client": "^0.1.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
