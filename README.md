@@ -18,21 +18,21 @@ Leadpipe MCP wraps the public Leadpipe intent and data APIs in a local MCP serve
 
 This server is API-key authenticated by default so the full audience workflow, visitor data access, and pixel management workflows are available to agents.
 
-## Install
+## Use With Claude, Cursor, and Codex
+
+Most users do not need to clone this repo or build from source. The published package is:
 
 ```bash
-npm install
+npx -y @leadpipe/mcp
 ```
 
-## Required Auth
-
-Set:
+You will need:
 
 ```bash
 export LEADPIPE_API_KEY=sk_...
 ```
 
-Optional:
+Optional advanced override:
 
 ```bash
 export LEADPIPE_BASE_URL=https://api.aws53.cloud
@@ -40,29 +40,16 @@ export LEADPIPE_BASE_URL=https://api.aws53.cloud
 
 `LEADPIPE_BASE_URL` only needs to change if you are pointing at a non-default environment.
 
-## Run Locally
+### Claude Desktop
 
-```bash
-npm run build
-node dist/index.js
-```
-
-For local development:
-
-```bash
-npm run dev
-```
-
-## MCP Config
-
-Local source build:
+Add this to your Claude Desktop MCP config:
 
 ```json
 {
   "mcpServers": {
     "leadpipe": {
-      "command": "node",
-      "args": ["/absolute/path/to/mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@leadpipe/mcp"],
       "env": {
         "LEADPIPE_API_KEY": "sk_..."
       }
@@ -71,7 +58,9 @@ Local source build:
 }
 ```
 
-Once published to npm, the same server can be installed with `npx`:
+### Cursor
+
+Add this to `~/.cursor/mcp.json`:
 
 ```json
 {
@@ -79,6 +68,60 @@ Once published to npm, the same server can be installed with `npx`:
     "leadpipe": {
       "command": "npx",
       "args": ["-y", "@leadpipe/mcp"],
+      "env": {
+        "LEADPIPE_API_KEY": "sk_..."
+      }
+    }
+  }
+}
+```
+
+### Codex
+
+Add the server with the Codex CLI:
+
+```bash
+codex mcp add leadpipe --env LEADPIPE_API_KEY=sk_... -- npx -y @leadpipe/mcp
+```
+
+Then confirm it is configured:
+
+```bash
+codex mcp list
+```
+
+## Quick Start
+
+If you just want to verify the package runs:
+
+```bash
+npx -y @leadpipe/mcp
+```
+
+## Run From Source
+
+For local development or repo hacking:
+
+```bash
+npm install
+npm run build
+node dist/index.js
+```
+
+For iterative local development:
+
+```bash
+npm run dev
+```
+
+Local source build MCP config:
+
+```json
+{
+  "mcpServers": {
+    "leadpipe": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp/dist/index.js"],
       "env": {
         "LEADPIPE_API_KEY": "sk_..."
       }
