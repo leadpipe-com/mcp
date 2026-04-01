@@ -6,7 +6,7 @@ Use this server to give agents direct access to:
 - topic discovery
 - website topic analysis
 - audience preview and ad hoc query
-- saved audience CRUD
+- saved audience management
 - audience status, results, runs, stats, and exports
 - visitor data lookup
 - tracking pixel management
